@@ -18,7 +18,8 @@ const MediaUploadModal = ({setOpenMediaUploadModal}) => {
     }
 
     const handleImageUpload = (event) => {
-        setMedia(event.target.files);
+        const files = event.target.files;
+        setMedia([...media, ...files]);
     }
 
     // useEffect(()=>{
@@ -46,6 +47,16 @@ const MediaUploadModal = ({setOpenMediaUploadModal}) => {
                             handleImageUpload(event);
                         }}
                     />
+                    <input
+                        // accept=".jpg, .jpeg, .png"
+                        type="file"
+                        id="file"
+                        multiple
+                        onChange={(event) => {
+                            handleImageUpload(event);
+                        }}
+                    />
+
                     <button
                         onClick={TextUploadModalHandler}
                         className="flex-shrink-0 rounded border-0 bg-blue-600 px-4 py-2 text-white transition duration-300 ease-in-out text-md hover:bg-blue-700 focus:outline-none sm:mt-0 sm:px-8">
